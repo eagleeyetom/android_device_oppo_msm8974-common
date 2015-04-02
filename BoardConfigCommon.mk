@@ -3,11 +3,13 @@
 
 COMMON_PATH := device/oppo/msm8974-common
 
+PRODUCT_VENDOR_KERNEL_HEADERS := device/oppo/msm8974-common/kernel-header
+
 TARGET_NO_BOOTLOADER := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8974
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
+#TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 
 # Architecture
 TARGET_CPU_VARIANT := krait
@@ -16,16 +18,19 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
+TARGET_NO_RADIOIMAGE := true
+TARGET_NO_RECOVERY := false
+TARGET_NO_KERNEL := false
 
 # Krait optimizations
-TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
+#TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
 
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.selinux=permissive androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.selinux=0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
-BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
+#BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00F00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00F00000
@@ -40,7 +45,7 @@ TARGET_USES_QCOM_BSP := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP -DQCOM_MEDIA_DISABLE_BUFFER_SIZE_CHECK
 
 # Display
-TARGET_QCOM_DISPLAY_VARIANT := caf-bfam
+#TARGET_QCOM_DISPLAY_VARIANT := caf-bfam
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
 TARGET_USES_C2D_COMPOSITION := true
@@ -50,9 +55,9 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 BOARD_USES_QC_TIME_SERVICES := true
 
 # Audio/media
-TARGET_QCOM_AUDIO_VARIANT := caf-bfam
-TARGET_QCOM_MEDIA_VARIANT := caf-bfam
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+#TARGET_QCOM_AUDIO_VARIANT := caf-bfam
+#TARGET_QCOM_MEDIA_VARIANT := caf-bfam
+#TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # audio
 BOARD_USES_ALSA_AUDIO:= true
@@ -104,26 +109,26 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 # power hal
 TARGET_PROVIDES_POWERHAL := true
 
-include device/qcom/sepolicy/sepolicy.mk
+#nclude device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-    $(COMMON_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    $(COMMON_PATH)/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    device.te \
-    file_contexts \
-    file.te \
-    init_shell.te \
-    mediaserver.te \
-    mm-qcamerad.te \
-    qseecomd.te \
-    rmt_storage.te \
-    sensors.te \
-    system_app.te \
-    system_server.te \
-    time_daemon.te \
-    thermal-engine.te \
-    vold.te
+#BOARD_SEPOLICY_UNION += \
+ #   device.te \
+  #  file_contexts \
+   # file.te \
+    #init_shell.te \
+   # mediaserver.te \
+   # mm-qcamerad.te \
+  #  qseecomd.te \
+  #  rmt_storage.te \
+  #  sensors.te \
+  #  system_app.te \
+  #  system_server.te \
+  #  time_daemon.te \
+  #  thermal-engine.te \
+  #  vold.te
 
 # Recovery:Start
 
@@ -132,12 +137,12 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # TWRP specific build flags
-TW_THEME := portrait_hdpi
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TW_NO_USB_STORAGE := true
-TW_INCLUDE_JB_CRYPTO := false
-TW_NO_SCREEN_BLANK := true
-TW_EXCLUDE_ENCRYPTED_BACKUPS := true
-TW_INCLUDE_L_CRYPTO := true
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+#TW_THEME := portrait_hdpi
+#RECOVERY_GRAPHICS_USE_LINELENGTH := true
+#TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+#TW_NO_USB_STORAGE := true
+#TW_INCLUDE_JB_CRYPTO := false
+#TW_NO_SCREEN_BLANK := true
+#TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+#TW_INCLUDE_L_CRYPTO := true
+#BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
